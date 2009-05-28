@@ -1,0 +1,5 @@
+== 0.1.0 2009-05-28
+
+* Initial release
+  * Growl notifications for Test::Unit, RSpec and Cucumber (workaround)
+  * Formerly part of autotest-mac which is now deprecated

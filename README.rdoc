@@ -1,0 +1,107 @@
+= Autotest Growl
+
+* Homepage: http://www.bitcetera.com/products/autotest-growl
+* Issues and forum: https://forge.bitcetera.com/projects/show/autotest-growl
+
+== DESCRIPTION:
+
+This gem aims to improve support for Growl notification by ZenTest's autotest.
+It comes with a nice colored Ruby icon set and - for now - supports Cucumber 
+by means of a workaround.
+
+With autotest-growl you get Growl notifications for every test (RSpec and 
+Test::Unit) and scenario (Cubumber) run by autotest, decorated per default 
+with a cute set of colored ruby icons.
+
+Furthermore the terminal running autotest is cleared on every cycle. Don't
+worry though, it's still possible to scroll up to see the output of previous
+cycles.
+
+=== Ruby 1.9.1 Note
+
+For the moment, autotest-growl doesn't seem to work on Ruby 1.9.1. This will
+change soon, however, it will take a few days as autotest itself is currently
+misbehaving - at least on my setup.
+
+== REQUIREMENTS:
+
+* Growl >= 1.1.4
+* ZenTest >= 4.0.0
+
+== INSTALL:
+
+First install the gem:
+
+  sudo gem install autotest-growl
+
+Then add the following line to the top of your ~/.autotest file:
+
+  require 'autotest-grwol'
+
+Make sure Growl is installed on your computer. You can download it from:
+
+http://growl.info
+
+== CONFIGURATION:
+
+=== Custom Icons
+
+Using your own set of icons is pretty simple. Just create a directory
+~/.autotest-growl, copy your icons there and name them passed.png,
+pending.png, failed.png and error.png.
+
+== TROUBLESHOOTING:
+
+=== Missing Cucumber Notifications
+
+If you are using other autotest plugins which use the :waiting hook, the
+Cucumber workaround will only work if the line "require 'autotest/growl'"
+comes first in your ~/.autotest.
+
+An example of such a colliding autotest plugin is the autotest-fsevent gem.
+
+=== Unreliable Growl Notifications
+
+Under some circumstances, Growl notifications seem to be swallowed randomly.
+If this happens to you, try the following.
+
+Add this to your ~/.autotest:
+
+  Autotest::Growl::REMOTE_NOTIFICATION = true
+  
+Now open "System Preferences -> Growl -> Network" and set the checkboxes
+"Listen for incoming notifications" and "Allow remote application 
+registration”. Try whether remote notifications work with the following
+test:
+
+  find /usr/lib -name growlnotify -exec {} -H localhost -n autotest -m ok \;
+  
+If you get a NSPortTimeoutException, you should restart Growl and check
+whether a firewall is blocking the connection. Once the notification is 
+displayed, go back to the System Preferences and disable the checkbox
+"Allow remote application registration" again.
+
+== LICENSE:
+
+(The MIT License)
+
+Copyright (c) 2009 Sven Schwyn
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
