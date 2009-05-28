@@ -7,11 +7,7 @@
 
 This gem aims to improve support for Growl notification by ZenTest's autotest.
 It comes with a nice colored Ruby icon set and - for now - supports Cucumber 
-by means of a workaround.
-
-With autotest-growl you get Growl notifications for every test (RSpec and 
-Test::Unit) and scenario (Cubumber) run by autotest, decorated per default 
-with a cute set of colored ruby icons.
+notifications by means of a workaround.
 
 Furthermore the terminal running autotest is cleared on every cycle. Don't
 worry though, it's still possible to scroll up to see the output of previous
@@ -30,17 +26,33 @@ misbehaving - at least on my setup.
 
 == INSTALL:
 
-First install the gem:
-
-  sudo gem install autotest-growl
-
-Then add the following line to the top of your ~/.autotest file:
-
-  require 'autotest-grwol'
-
 Make sure Growl is installed on your computer. You can download it from:
 
 http://growl.info
+
+Now install the gem:
+
+  sudo gem install autotest-growl
+
+=== With ZenTest >4.0.0
+
+Add the following line to your ~/.autotest file:
+
+  require 'autotest/growl'
+
+=== With ZenTest 4.0.0
+
+ZenTest comes with a bundled Growl plugin which will be removed in the 
+near future. If you use ZenTest-4.0.0 or older, the above require won't do
+the trick, instead do the following:
+
+Find the full path to autotest-growl:
+
+  find /Library/Ruby /usr -name growl.rb | grep "gems/autotest"
+
+Then add the output of the above to your ~/.autotest file:
+
+  require '--PUT-OUTPUT-HERE--'
 
 == CONFIGURATION:
 
@@ -50,15 +62,20 @@ Using your own set of icons is pretty simple. Just create a directory
 ~/.autotest-growl, copy your icons there and name them passed.png,
 pending.png, failed.png and error.png.
 
+=== Hide the Label
+
+If you prefer the Growl notifications not to show labels such as "LABEL:
+All tests have passed", add the following to your ~/.autotest:
+
+  Autotest::Growl::hide_label = true
+
 == TROUBLESHOOTING:
 
 === Missing Cucumber Notifications
 
-If you are using other autotest plugins which use the :waiting hook, the
-Cucumber workaround will only work if the line "require 'autotest/growl'"
-comes first in your ~/.autotest.
-
-An example of such a colliding autotest plugin is the autotest-fsevent gem.
+If you are using autotest-fsevent as well, the require statements are not
+ordered correctly. The require for autotest-fsevent must come after all
+other requires in your ~/.autotest.
 
 === Unreliable Growl Notifications
 
@@ -67,14 +84,14 @@ If this happens to you, try the following.
 
 Add this to your ~/.autotest:
 
-  Autotest::Growl::REMOTE_NOTIFICATION = true
+  Autotest::Growl::remote_notification = true
   
 Now open "System Preferences -> Growl -> Network" and set the checkboxes
 "Listen for incoming notifications" and "Allow remote application 
 registration”. Try whether remote notifications work with the following
 test:
 
-  find /usr/lib -name growlnotify -exec {} -H localhost -n autotest -m ok \;
+  find /Library/Ruby /usr -name growlnotify -exec {} -H localhost -n autotest -m ok \;
   
 If you get a NSPortTimeoutException, you should restart Growl and check
 whether a firewall is blocking the connection. Once the notification is 
