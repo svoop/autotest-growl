@@ -8,6 +8,7 @@ img/error.png
 img/failed.png
 img/passed.png
 img/pending.png
+lib/autotest-growl.rb
 lib/autotest/growl.rb
 script/console
 script/destroy

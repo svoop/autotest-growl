@@ -34,7 +34,7 @@ Now install the gem:
 
   sudo gem install autotest-growl
 
-=== With ZenTest >4.0.0
+=== With ZenTest >4.0.0 (not yet released as of 2009-06-02)
 
 Add the following line to your ~/.autotest file:
 

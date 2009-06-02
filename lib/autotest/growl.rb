@@ -1,9 +1,6 @@
 require 'rubygems'
 require 'autotest'
 
-$:.unshift(File.dirname(__FILE__)) unless
-  $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
-
 ##
 # Autotest::Growl
 #
@@ -16,7 +13,6 @@ $:.unshift(File.dirname(__FILE__)) unless
 #   require 'autotest/growl'
 module Autotest::Growl
 
-  VERSION  = '0.1.0'
   GEM_PATH = File.expand_path(File.join(File.dirname(__FILE__), '../..'))
 
   @@remote_notification = false
@@ -79,7 +75,7 @@ module Autotest::Growl
 
   # FIXME: This is a temporary workaround until Cucumber is properly integrated!
   Autotest.add_hook :waiting do |autotest|
-    if @run_scenarios && autotest.results.grep(/cucumber/)
+    if @run_scenarios && !autotest.results.grep(/^\d+ scenario/).empty?
       gist = autotest.results.grep(/\d+\s+(scenario|step)s?/).map {|s| s.gsub(/(\e.*?m|\n)/, '') }.join(" / ")
       if gist == ''
         growl @label + 'Cannot run scenarios.', '', 'error'

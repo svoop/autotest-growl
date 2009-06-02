@@ -1,3 +1,8 @@
+== 0.1.1 2009-06-02
+
+* 1 major improvement
+  * Suppress Cucumber notification if not used
+
 == 0.1.0 2009-05-28
 
 * Initial release

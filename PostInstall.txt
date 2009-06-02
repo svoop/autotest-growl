@@ -22,3 +22,11 @@
   |                                                                          |
   +--------------------------------------------------------------------------+
 
+  +--------------------------------------------------------------------------+
+  |                                                                          |
+  |   If you have just upgraded and use it with ZenTest-4.0.0, make sure     |
+  |   you update the version number in the absolute path used to require     |
+  |   this gem in your ~/.autotest file.                                     |
+  |                                                                          |
+  |+-------------------------------------------------------------------------+
+
