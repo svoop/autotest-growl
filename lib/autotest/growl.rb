@@ -16,12 +16,19 @@ module Autotest::Growl
   GEM_PATH = File.expand_path(File.join(File.dirname(__FILE__), '../..'))
 
   @@remote_notification = false
+  @@clear_terminal = true
   @@hide_label = false
 
   ##
   # Whether to use remote or local notificaton (default).
   def self.remote_notification=(boolean)
     @@remote_notification = boolean
+  end
+
+  ##
+  # Whether to clear the terminal before running tests (default) or not.
+  def self.clear_terminal=(boolean)
+    @@clear_terminal = boolean
   end
 
   ##
@@ -49,7 +56,7 @@ module Autotest::Growl
     @label = (@@hide_label) ? ('') : (File.basename(Dir.pwd).upcase + ': ')
     @run_scenarios = false
     print "\n"*2 + '-'*80 + "\n"*2
-    print "\e[2J\e[f"   # clear the terminal
+    print "\e[2J\e[f" if @@clear_terminal
     false
   end
 
@@ -58,15 +65,15 @@ module Autotest::Growl
   Autotest.add_hook :ran_command do |autotest|
     gist = autotest.results.grep(/\d+\s+(example|test)s?/).map {|s| s.gsub(/(\e.*?m|\n)/, '') }.join(" / ")
     if gist == ''
-      growl @label + 'Cannot run tests.', '', 'error'
+      growl @label + 'Cannot run tests.', '', 'error', 2
     else
       if gist =~ /[1-9]\d*\s+(failure|error)/
-        growl @label + 'Some tests have failed.', gist, 'failed'
+        growl @label + 'Some tests have failed.', gist, 'failed', 2
       elsif gist =~ /pending/
-        growl @label + 'Some tests are pending.', gist, 'pending'
+        growl @label + 'Some tests are pending.', gist, 'pending', -1
         @run_scenarios = true
       else
-        growl @label + 'All tests have passed.', gist, 'passed'
+        growl @label + 'All tests have passed.', gist, 'passed', -2
         @run_scenarios = true
       end
     end
@@ -78,14 +85,14 @@ module Autotest::Growl
     if @run_scenarios && !autotest.results.grep(/^\d+ scenario/).empty?
       gist = autotest.results.grep(/\d+\s+(scenario|step)s?/).map {|s| s.gsub(/(\e.*?m|\n)/, '') }.join(" / ")
       if gist == ''
-        growl @label + 'Cannot run scenarios.', '', 'error'
+        growl @label + 'Cannot run scenarios.', '', 'error', 2
       else
         if gist =~ /failed/
-          growl @label + 'Some scenarios have failed.', gist, 'failed'
+          growl @label + 'Some scenarios have failed.', gist, 'failed', 2
         elsif gist =~ /undefined/
-          growl @label + 'Some scenarios are undefined.', gist, 'pending'
+          growl @label + 'Some scenarios are undefined.', gist, 'pending', -1
         else
-          growl @label + 'All scenarios have passed.', gist, 'passed'
+          growl @label + 'All scenarios have passed.', gist, 'passed', -2
         end
       end
     end

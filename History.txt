@@ -1,3 +1,9 @@
+== 0.1.2 2009-06-03
+
+* 2 major improvements
+  * Add priorities to notifications (Michael Moen)
+  * Add clear_terminal configuration option (Michael Moen)
+  
 == 0.1.1 2009-06-02
 
 * 1 major improvement

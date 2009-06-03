@@ -1,5 +1,6 @@
 = Autotest Growl
 
+* Author: Sven Schwyn (http://www.bitcetera.com)
 * Homepage: http://www.bitcetera.com/products/autotest-growl
 * Issues and forum: https://forge.bitcetera.com/projects/show/autotest-growl
 
@@ -9,9 +10,15 @@ This gem aims to improve support for Growl notification by ZenTest's autotest.
 It comes with a nice colored Ruby icon set and - for now - supports Cucumber 
 notifications by means of a workaround.
 
-Furthermore the terminal running autotest is cleared on every cycle. Don't
-worry though, it's still possible to scroll up to see the output of previous
-cycles.
+The priority of a notification is set according to the actual result: "error"
+and "failed" have priority 2, "pending" and "unknown" have priority -1 and 
+"passed" have priority -2. You can configure Growl to style the notifications
+differently based on these priorities.
+
+Furthermore the terminal running autotest is cleared on every cycle (unless
+configured otherwise). Don't worry though, it's still possible to scroll up
+to see the output of previous cycles - at least on the Terminal.app from
+Apple.
 
 === Ruby 1.9.1 Note
 
@@ -45,6 +52,13 @@ http://growl.info
 Using your own set of icons is pretty simple. Just create a directory
 ~/.autotest-growl, copy your icons there and name them passed.png,
 pending.png, failed.png and error.png.
+
+=== Don't Clear the Terminal
+
+Add the following to your ~/.autotest if you don't want the terminal to
+be cleared before running a test:
+
+  Autotest::Growl::clear_terminal = false
 
 === Hide the Label
 
@@ -97,6 +111,12 @@ To contribute code, fork the project on Github, add your code and submit a
 pull request:
 
 http://github.com/guides/fork-a-project-and-submit-your-modifications
+
+== CONTRIBUTIONS:
+
+Thanks to the following folks who have contributed to this project:
+
+* Michael Moen
 
 == LICENSE:
 
