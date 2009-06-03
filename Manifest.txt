@@ -3,6 +3,7 @@ Manifest.txt
 PostInstall.txt
 README.rdoc
 Rakefile
+autotest-growl.gemspec
 growl/growlnotify
 img/error.png
 img/failed.png

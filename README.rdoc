@@ -82,6 +82,22 @@ whether a firewall is blocking the connection. Once the notification is
 displayed, go back to the System Preferences and disable the checkbox
 "Allow remote application registration" again.
 
+== DEVELOPMENT:
+
+You can install the bleeding-edge version as follows:
+
+  sudo gem uninstall autotest-growl
+  sudo gem install svoop-autotest-growl --source http://gems.github.com
+
+Please submit issues on:
+
+https://forge.bitcetera.com/projects/show/autotest-growl
+
+To contribute code, fork the project on Github, add your code and submit a
+pull request:
+
+http://github.com/guides/fork-a-project-and-submit-your-modifications
+
 == LICENSE:
 
 (The MIT License)
