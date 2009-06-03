@@ -22,7 +22,7 @@ might take a while though as autotest itself is currently misbehaving on Ruby
 == REQUIREMENTS:
 
 * Growl >= 1.1.4
-* ZenTest >= 4.0.1
+* ZenTest >= 4.1.0
 
 == INSTALL:
 

@@ -11,7 +11,7 @@ $hoe = Hoe.new('autotest-growl', AutotestGrowl::VERSION) do |p|
   p.post_install_message = "\n\e[1;32m" + File.read('PostInstall.txt') + "\e[0;30m\n"
   p.rubyforge_name       = p.name
   p.extra_deps         = [
-    ['ZenTest','>= 4.0.0'],
+    ['ZenTest','>= 4.1.0'],
   ]
   p.extra_dev_deps = [
     ['newgem', ">= #{::Newgem::VERSION}"]

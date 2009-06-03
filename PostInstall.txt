@@ -12,4 +12,12 @@ for assistance.
 
 For more information, feedback and bug submissions, please visit:
 
-See http://www.bitcetera.com/products/autotest-growl
+http://www.bitcetera.com/products/autotest-growl
+
++-------------------------------------------------------------------------+
+| IMPORTANT NOTE FOR UPGRADES FROM VERSION 0.1.0                          |
+| ZenTest no longer  comes with  bundled Growl support and  therefore the |
+| require in your ~/.autotest must not  contain the absolute path to this |
+| gem anymore. Please update your ~/.autotest to contain the require line |
+| mentioned above.                                                        |
++-------------------------------------------------------------------------+
