@@ -15,7 +15,7 @@ cycles.
 
 === Ruby 1.9.1 Note
 
-For the moment, autotest-growl doesn't seem to work on Ruby 1.9.1. Fixing this
+For the moment, autotest growl doesn't seem to work on Ruby 1.9.1. Fixing this
 might take a while though as autotest itself is currently misbehaving on Ruby
 1.9 - at least on my setup.
 
