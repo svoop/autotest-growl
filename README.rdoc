@@ -15,44 +15,28 @@ cycles.
 
 === Ruby 1.9.1 Note
 
-For the moment, autotest-growl doesn't seem to work on Ruby 1.9.1. This will
-change soon, however, it will take a few days as autotest itself is currently
-misbehaving - at least on my setup.
+For the moment, autotest-growl doesn't seem to work on Ruby 1.9.1. Fixing this
+might take a while though as autotest itself is currently misbehaving on Ruby
+1.9 - at least on my setup.
 
 == REQUIREMENTS:
 
 * Growl >= 1.1.4
-* ZenTest >= 4.0.0
+* ZenTest >= 4.0.1
 
 == INSTALL:
+
+First install the gem:
+
+  sudo gem install autotest-growl
+
+Then add the following line to your ~/.autotest file:
+
+  require 'autotest/growl'
 
 Make sure Growl is installed on your computer. You can download it from:
 
 http://growl.info
-
-Now install the gem:
-
-  sudo gem install autotest-growl
-
-=== With ZenTest >4.0.0 (not yet released as of 2009-06-02)
-
-Add the following line to your ~/.autotest file:
-
-  require 'autotest/growl'
-
-=== With ZenTest 4.0.0
-
-ZenTest comes with a bundled Growl plugin which will be removed in the 
-near future. If you use ZenTest-4.0.0 or older, the above require won't do
-the trick, instead do the following:
-
-Find the full path to autotest-growl:
-
-  find /Library/Ruby /usr -name growl.rb | grep "gems/autotest"
-
-Then add the output of the above to your ~/.autotest file:
-
-  require '--PUT-OUTPUT-HERE--'
 
 == CONFIGURATION:
 

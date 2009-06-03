@@ -3,6 +3,6 @@ $:.unshift(File.dirname(__FILE__)) unless
 
 module AutotestGrowl
 
-  VERSION  = '0.1.1'
+  VERSION  = '0.1.0'
 
 end
