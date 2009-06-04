@@ -69,6 +69,21 @@ All tests have passed", add the following to your ~/.autotest:
 
 == TROUBLESHOOTING:
 
+=== Loading the Plugin Seems to Fail
+
+Most likely you still have an old version of ZenTest <= 4.0.0 installed,
+check it with:
+
+  gem list ZenTest
+
+To uninstall a specific version (e.g. 4.0.0), type:
+
+  sudo gem uninstall ZenTest --version=4.0.0
+
+Or remove all outdated versions of all installed gems:
+
+  sudo gem cleanup
+
 === Missing Cucumber Notifications
 
 If you are using autotest-fsevent as well, the require statements are not
