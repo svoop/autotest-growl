@@ -3,7 +3,7 @@
 * 3 major improvements
   * Add priorities to notifications (Michael Moen)
   * Add clear_terminal configuration option (Michael Moen)
-  * Add show_modified_files configuration option (gsavage)
+  * Add show_modified_files configuration option (Graham Savage)
 
 == 0.1.1 2009-06-02
 

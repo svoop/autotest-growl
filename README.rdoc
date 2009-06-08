@@ -143,7 +143,7 @@ http://github.com/guides/fork-a-project-and-submit-your-modifications
 Thanks to the following folks who have contributed to this project:
 
 * Michael Moen
-* gsavage
+* Graham Savage
 
 == LICENSE:
 
