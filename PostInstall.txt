@@ -19,5 +19,5 @@ http://www.bitcetera.com/products/autotest-growl
 | ZenTest no longer  comes with  bundled Growl support and  therefore the |
 | require in your ~/.autotest must not  contain the absolute path to this |
 | gem anymore. Please update your ~/.autotest to contain the require line |
-| mentioned above.                                                        |
+| mentioned above. Make sure no ZenTest version <=4.0.0 is installed.     |
 +-------------------------------------------------------------------------+

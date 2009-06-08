@@ -10,10 +10,14 @@ This gem aims to improve support for Growl notification by ZenTest's autotest.
 It comes with a nice colored Ruby icon set and - for now - supports Cucumber 
 notifications by means of a workaround.
 
-The priority of a notification is set according to the actual result: "error"
-and "failed" have priority 2, "pending" and "unknown" have priority -1 and 
-"passed" have priority -2. You can configure Growl to style the notifications
-differently based on these priorities.
+The priority of a notification is set according to the actual result so you
+can  configure Growl to style the notifications differently based on these
+priorities:
+
+* 2 for error or failed
+* 0 for info
+* -1 for pending or unknown
+* -2 for passed
 
 Furthermore the terminal running autotest is cleared on every cycle (unless
 configured otherwise). Don't worry though, it's still possible to scroll up
@@ -51,7 +55,7 @@ http://growl.info
 
 Using your own set of icons is pretty simple. Just create a directory
 ~/.autotest-growl, copy your icons there and name them passed.png,
-pending.png, failed.png and error.png.
+pending.png, failed.png, error.png and info.png.
 
 === Don't Clear the Terminal
 
@@ -66,6 +70,13 @@ If you prefer the Growl notifications not to show labels such as "LABEL:
 All tests have passed", add the following to your ~/.autotest:
 
   Autotest::Growl::hide_label = true
+
+=== Show Modified Files
+
+Add the following to your ~/.autotest if you would like to receive a Growl
+notification listing the files modified before tests are re-run.
+
+  Autotest::Growl::show_modified_files = true
 
 == TROUBLESHOOTING:
 

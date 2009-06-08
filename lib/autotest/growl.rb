@@ -15,9 +15,13 @@ module Autotest::Growl
 
   GEM_PATH = File.expand_path(File.join(File.dirname(__FILE__), '../..'))
 
+  @label = ''
+  @modified_files = []
+
   @@remote_notification = false
   @@clear_terminal = true
   @@hide_label = false
+  @@show_modified_files = false
 
   ##
   # Whether to use remote or local notificaton (default).
@@ -38,6 +42,12 @@ module Autotest::Growl
   end
 
   ##
+  # Whether to display the modified files or not (default).
+  def self.show_modified_files=(boolean)
+    @@show_modified_files = boolean
+  end
+
+  ##
   # Display a message through Growl.
   def self.growl title, message, icon, priority=0, stick=""
     growl = File.join(GEM_PATH, 'growl', 'growlnotify')
@@ -51,9 +61,21 @@ module Autotest::Growl
   end
 
   ##
+  # Display the modified files.
+  Autotest.add_hook :updated do |autotest, modified|
+    if @@show_modified_files
+      if modified != @last_modified
+        growl @label + 'Modifications detected.', modified.collect {|m| m[0]}.join(', '), 'info', 0
+        @last_modified = modified
+      end
+    end
+    false
+  end
+
+  ##
   # Set the label and clear the terminal.
   Autotest.add_hook :run_command do
-    @label = (@@hide_label) ? ('') : (File.basename(Dir.pwd).upcase + ': ')
+    @label = File.basename(Dir.pwd).upcase + ': ' if !@@hide_label
     @run_scenarios = false
     print "\n"*2 + '-'*80 + "\n"*2
     print "\e[2J\e[f" if @@clear_terminal
