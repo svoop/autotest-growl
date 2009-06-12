@@ -1,4 +1,4 @@
-== 0.1.2 2009-06-08
+== 0.1.2 2009-06-12
 
 * 3 major improvements
   * Add priorities to notifications (Michael Moen)
