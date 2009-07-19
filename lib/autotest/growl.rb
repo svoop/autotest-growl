@@ -49,15 +49,35 @@ module Autotest::Growl
 
   ##
   # Display a message through Growl.
-  def self.growl title, message, icon, priority=0, stick=""
+  def self.growl(title, message, icon, priority=0, stick="")
     growl = File.join(GEM_PATH, 'growl', 'growlnotify')
     image = File.join(ENV['HOME'], '.autotest-growl', "#{icon}.png")
     image = File.join(GEM_PATH, 'img', "#{icon}.png") unless File.exists?(image)
     if @@remote_notification
-      system "#{growl} -H localhost -n autotest --image '#{image}' -p #{priority} -m #{message.inspect} '#{title}' #{stick}"
+      system "#{growl} -H localhost -n autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick}"
     else
-      system "#{growl} -n autotest --image '#{image}' -p #{priority} -m #{message.inspect} '#{title}' #{stick}"
+      system "#{growl} -n autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick}"
     end
+  end
+
+  ##
+  # Analyze test results and return the numbers in a hash or nil.
+  def self.analyze(results)
+    results.map! {|s| s.gsub(/(\e.*?m|\n)/, '') }   # remove escape sequences
+    results.reject! {|line| !line.match(/\d+\s+(example|test|scenario|step)s?/) }   # isolate result numbers
+    unless results.empty?
+      results = results.join(' ').gsub(/\W+/, ' ').split(' ')   # clean brackets, commas and such
+      results = results.map do |r| 
+        r.sub(/s$/, '')   # singularize
+        r.sub(/failure/, 'failed')   # homogenize
+      end
+      results = Hash[*results.reverse]   # create numbers hash
+      results.reject {|k, v| v.to_i == 0 }   # remove zero numbers
+    end
+  end
+
+  def pretty(*args)
+    'not yet done'
   end
 
   ##
@@ -76,49 +96,66 @@ module Autotest::Growl
   # Set the label and clear the terminal.
   Autotest.add_hook :run_command do
     @label = File.basename(Dir.pwd).upcase + ': ' if !@@hide_label
-    @run_scenarios = false
+    @run_scenarios = false   # WORKAROUND
     print "\n"*2 + '-'*80 + "\n"*2
     print "\e[2J\e[f" if @@clear_terminal
     false
   end
 
   ##
-  # Parse the test results and send them to Growl.
+  # Parse the RSpec and Test::Unit results and send them to Growl.
   Autotest.add_hook :ran_command do |autotest|
-    gist = autotest.results.grep(/\d+\s+(example|test)s?/).map {|s| s.gsub(/(\e.*?m|\n)/, '') }.join(" / ")
-    if gist == ''
-      growl @label + 'Cannot run tests.', '', 'error', 2
-    else
-      if gist =~ /[1-9]\d*\s+(failure|error)/
-        growl @label + 'Some tests have failed.', gist, 'failed', 2
-      elsif gist =~ /pending/
-        growl @label + 'Some tests are pending.', gist, 'pending', -1
-        @run_scenarios = true
-      else
-        growl @label + 'All tests have passed.', gist, 'passed', -2
-        @run_scenarios = true
+    results = analyze(autotest.results)
+    if results
+      case autotest.testlib
+      when 'rspec'
+        if results['failed']
+          growl @label + 'Some RSpec examples have failed.', pretty('example', 'failed', 'pending'), 'failed', 2
+        elsif numbers['pending']
+          growl @label + 'Some RSpec examples are pending.', pretty('example', 'pending'), 'pending', -1
+        else
+          growl @label + 'All RSpec examples have passed.', pretty('example'), 'passed', -2
+          @run_scenarios = true   # WORKAROUND
+        end
+      when 'test/unit'
+        if results['error']
+          growl @label + 'Cannot run some unit tests.', pretty(['assertion', 'in', 'test'], 'error'), 'error', 2
+        elsif results['failed']
+          growl @label + 'Some unit tests have failed.', pretty(['assertion', 'in', 'test'], 'failed'), 'failed', 2
+        else
+          growl @label + 'All unit tests have passed.', pretty(['assertion', 'in', 'test']), 'passed', -2
+          @run_scenarios = true   # WORKAROUND
+        end
+      when 'cucumber'
+        growl 'HOOK FIRED', 'cool', 'passed'
+        # WORKARDOUND: Hooked to :waiting until properly integrated in ZenTest.
       end
+    else
+      growl @label + 'Cannot run tests.', '', 'error', 2
     end
     false
   end
 
-  # FIXME: This is a temporary workaround until Cucumber is properly integrated!
+=begin
+  ##
+  # WORKAROUND: Parse the Cucumber results and send them to Growl.
   Autotest.add_hook :waiting do |autotest|
     if @run_scenarios && !autotest.results.grep(/^\d+ scenario/).empty?
-      gist = autotest.results.grep(/\d+\s+(scenario|step)s?/).map {|s| s.gsub(/(\e.*?m|\n)/, '') }.join(" / ")
+      gist = autotest.results.map {|s| s.gsub(/(\e.*?m|\n)/, '') }.grep(/\d+\s+(scenario|step)s?/).join(", ")
       if gist == ''
-        growl @label + 'Cannot run scenarios.', '', 'error', 2
+        growl @label + 'Cannot run Cucumber scenarios.', '', 'error', 2
       else
         if gist =~ /failed/
-          growl @label + 'Some scenarios have failed.', gist, 'failed', 2
+          growl @label + 'Some Cucumber scenarios have failed.', gist, 'failed', 2
         elsif gist =~ /undefined/
-          growl @label + 'Some scenarios are undefined.', gist, 'pending', -1
+          growl @label + 'Some Cucumber scenarios are undefined.', gist, 'pending', -1
         else
-          growl @label + 'All scenarios have passed.', gist, 'passed', -2
+          growl @label + 'All Cucumber scenarios have passed.', gist, 'passed', -2
         end
       end
     end
     false
   end
+=end
 
 end
