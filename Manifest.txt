@@ -12,6 +12,7 @@ img/passed.png
 img/pending.png
 lib/autotest-growl.rb
 lib/autotest/growl.rb
+lib/autotest/result.rb
 script/console
 script/destroy
 script/generate

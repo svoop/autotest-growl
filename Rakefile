@@ -17,7 +17,7 @@ $hoe = Hoe.spec 'autotest-growl' do
   self.post_install_message = "\n\e[1;32m" + File.read('PostInstall.txt') + "\e[0;30m\n"
   self.rubyforge_name       = self.name
   self.extra_deps           = [
-                                ['ZenTest','>= 4.1.0'],
+                                ['ZenTest','>= 4.1.3'],
                               ]
 end
 
