@@ -1,7 +1,8 @@
 == 0.1.3 2009-07-23
 
-* 1 major improvement
+* 2 major improvements
   * Better result analysis and more readable notifications
+  * Support for Windows
 * 3 minor improvement
   * Move Cucumber notification to :ran_features hook
   * Add one_notification_per_run configuration option

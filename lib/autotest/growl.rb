@@ -18,6 +18,8 @@ module Autotest::Growl
 
   @label = ''
   @modified_files = []
+  @ran_tests = false
+  @ran_features = false
 
   @@remote_notification = false
   @@one_notification_per_run = false
@@ -61,10 +63,18 @@ module Autotest::Growl
     growl = File.join(GEM_PATH, 'growl', 'growlnotify')
     image = File.join(ENV['HOME'], '.autotest-growl', "#{icon}.png")
     image = File.join(GEM_PATH, 'img', "#{icon}.png") unless File.exists?(image)
-    if @@remote_notification
-      system "#{growl} -H localhost -n autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick}"
+    case RUBY_PLATFORM
+    when /mswin/
+      growl += '.com'
+      system %(#{growl} #{message.inspect} /a:"autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}")
+    when /darwin/
+      if @@remote_notification
+        system %(#{growl} -H localhost -n autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick})
+      else
+        system %(#{growl} -n autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick})
+      end
     else
-      system "#{growl} -n autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick}"
+      raise "#{RUBY_PLATFORM} is not supported by autotest-growl" 
     end
   end
 

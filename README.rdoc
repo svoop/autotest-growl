@@ -32,7 +32,7 @@ might take a while though as autotest itself is currently misbehaving on Ruby
 
 == REQUIREMENTS:
 
-* Growl >= 1.1.5
+* Growl >= 1.1.5 (Mac OS X) or >= 2.0b18 (Windows) 
 * ZenTest >= 4.1.3
 
 == INSTALL:
@@ -47,7 +47,8 @@ Then add the following line to your ~/.autotest file:
 
 Make sure Growl is installed on your computer. You can download it from:
 
-http://growl.info
+Mac OS X: http://growl.info
+Windows:  http://growlforwindows.com
 
 == CONFIGURATION:
 
