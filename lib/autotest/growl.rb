@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'autotest'
-require File.dirname(__FILE__) + '/result.rb'
+require File.join(File.dirname(__FILE__), 'result')
 
 ##
 # Autotest::Growl
@@ -14,7 +14,7 @@ require File.dirname(__FILE__) + '/result.rb'
 #   require 'autotest/growl'
 module Autotest::Growl
 
-  GEM_PATH = File.expand_path(File.join(File.dirname(__FILE__), '../..'))
+  GEM_PATH = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
 
   @label = ''
   @modified_files = []
