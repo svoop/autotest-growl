@@ -5,7 +5,8 @@ require 'autotest/growl'
 
 Make sure Growl is installed on your computer. Download it from:
 
-http://growl.info
+http://growl.info (Mac OS X)
+http://growlforwindows.com (Windows)
 
 If Growl notifications are not always displayed, take a look at the README
 for assistance.

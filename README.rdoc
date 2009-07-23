@@ -103,10 +103,10 @@ Or remove all outdated versions of all installed gems:
 
   sudo gem cleanup
 
-=== Unreliable Growl Notifications
+=== Unreliable Growl Notifications on Mac OS X
 
-Under some circumstances, Growl notifications seem to be swallowed randomly.
-If this happens to you, try the following.
+Under some circumstances, Growl notifications seem to be swallowed randomly
+on Mac OS X. If this happens to you, try the following.
 
 Add this to your ~/.autotest:
 
