@@ -66,13 +66,12 @@ module Autotest::Growl
     case RUBY_PLATFORM
     when /mswin/
       growl += '.com'
-      system %(#{growl} #{message.inspect} /a:"autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}")
+      system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}")
     when /darwin/
-      growl += '-wrapper'
       if @@remote_notification
-        system %(#{growl} -H localhost -n autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick})
+        system %(#{growl} -H localhost -n Autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick} &)
       else
-        system %(#{growl} -n autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick})
+        system %(#{growl} -w -n Autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick} &)
       end
     else
       raise "#{RUBY_PLATFORM} is not supported by autotest-growl" 
