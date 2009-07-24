@@ -5,6 +5,7 @@ README.rdoc
 Rakefile
 autotest-growl.gemspec
 growl/growlnotify
+growl/growlnotify-wrapper
 growl/growlnotify.com
 img/error.png
 img/failed.png

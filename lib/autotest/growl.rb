@@ -68,6 +68,7 @@ module Autotest::Growl
       growl += '.com'
       system %(#{growl} #{message.inspect} /a:"autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}")
     when /darwin/
+      growl += '-wrapper'
       if @@remote_notification
         system %(#{growl} -H localhost -n autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick})
       else

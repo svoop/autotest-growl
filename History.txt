@@ -1,7 +1,8 @@
 == 0.1.4 2009-07-23
 
-* 1 major improvement
+* 2 major improvements
   * Support for Windows (Karl O'Keeffe)
+  * Wrapper for grownotify to improve reliability (Karl O'Keefe)
 
 == 0.1.3 2009-07-22
 

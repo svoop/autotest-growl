@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = %q{This gem aims to improve support for Growl notification by ZenTest's autotest. It comes with a nice colored Ruby icon set and - for now - supports Cucumber by means of a workaround.}
   s.email = ["ruby@bitcetera.com"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "PostInstall.txt"]
-  s.files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "autotest-growl.gemspec", "growl/growlnotify", "growl/growlnotify.com", "img/error.png", "img/failed.png", "img/info.png", "img/passed.png", "img/pending.png", "lib/autotest-growl.rb", "lib/autotest/growl.rb", "lib/autotest/result.rb", "script/console", "script/destroy", "script/generate", "spec/autotest-growl_spec.rb", "spec/spec.opts", "spec/spec_helper.rb", "tasks/rspec.rake"]
+  s.files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "autotest-growl.gemspec", "growl/growlnotify", "growl/growlnotify-wrapper", "growl/growlnotify.com", "img/error.png", "img/failed.png", "img/info.png", "img/passed.png", "img/pending.png", "lib/autotest-growl.rb", "lib/autotest/growl.rb", "lib/autotest/result.rb", "script/console", "script/destroy", "script/generate", "spec/autotest-growl_spec.rb", "spec/spec.opts", "spec/spec_helper.rb", "tasks/rspec.rake"]
   s.homepage = %q{http://www.bitcetera.com/products/autotest-growl}
   s.post_install_message = %q{
 [1;32mIn order to use autotest-growl, the following line has to be added to your
