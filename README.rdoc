@@ -129,7 +129,19 @@ displayed, go back to the System Preferences and disable the checkbox
 You can install the bleeding-edge version as follows:
 
   sudo gem uninstall autotest-growl
-  sudo gem install svoop-autotest-growl --source http://gems.github.com
+  git clone git://github.com/svoop/autotest-growl.git svoop-autotest-growl
+  cd autotest-growl
+  rake gem && rake install_gem
+
+At any point later in time get the modifications with:
+
+  cd svoop-autotest-growl
+  git pull
+  sudo gem uninstall svoop-autotest-growl
+  rake gem && rake install_gem
+
+Please note that simply installing the gem from Github won't get you the
+bleeding-edge version as Github only builds gems on version bumps.
 
 Please submit issues on:
 
