@@ -1,3 +1,0 @@
-#!/bin/sh
-wrappee=`dirname "$0"`/growlnotify
-exec $wrappee -w "$@" &
