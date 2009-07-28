@@ -152,6 +152,7 @@ Thanks to the following folks who have contributed to this project:
 * Michael Moen
 * Graham Savage
 * Karl O'Keeffe
+* Konstantin Haase
 
 == LICENSE:
 
