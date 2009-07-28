@@ -29,7 +29,7 @@ for assistance.
 For more information, feedback and bug submissions, please visit:
 
 http://www.bitcetera.com/products/autotest-growl
-[0;30m
+[0m
 }
   s.rdoc_options = ["--main", "README.rdoc"]
   s.require_paths = ["lib"]
