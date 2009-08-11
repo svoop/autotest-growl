@@ -25,9 +25,9 @@ class Result
   # Determine the testing framework used.
   def framework
     case
-      when @numbers['test']; 'test-unit'
-      when @numbers['example']; 'rspec'
-      when @numbers['scenario']; 'cucumber'
+      when @numbers['test'] then 'test-unit'
+      when @numbers['example'] then 'rspec'
+      when @numbers['scenario'] then 'cucumber'
     end
   end
 
