@@ -1,7 +1,8 @@
-== edge
+== 0.1.6 2009-08-12
 
-* 1 minor improvement
+* 2 minor improvements
   * Reset the postinstall text color to previous (Konstantin Haase)
+  * Ruby 1.9 compatibility
 
 == 0.1.5 2009-07-27
 
