@@ -48,9 +48,13 @@ Windows:  http://growlforwindows.com
 
 === Custom Icons
 
-Using your own set of icons is pretty simple. Just create a directory
-~/.autotest-growl, copy your icons there and name them passed.png,
-pending.png, failed.png, error.png and info.png.
+Using your own set of icons is pretty simple. Images should be named as
+follows: passed.png, pending.png, failed.png, error.png and info.png.
+
+Place these images in a directory of your choosing and specify its
+location in your ~/.autotest:
+
+  Autotest::Growl::image_dir = File.join(ENV['HOME'], '.autotest-growl')
 
 === Don't Clear the Terminal
 

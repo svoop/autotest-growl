@@ -26,6 +26,7 @@ module Autotest::Growl
   @@clear_terminal = true
   @@hide_label = false
   @@show_modified_files = false
+  @@image_dir = File.join(GEM_PATH, 'img')
 
   ##
   # Whether to use remote or local notificaton (default).
@@ -58,11 +59,16 @@ module Autotest::Growl
   end
 
   ##
+  # Directory where notification icons can be found
+  def self.image_dir=(path)
+    @@image_dir = path
+  end
+
+  ##
   # Display a message through Growl.
   def self.growl(title, message, icon, priority=0, stick="")
     growl = File.join(GEM_PATH, 'growl', 'growlnotify')
-    image = File.join(ENV['HOME'], '.autotest-growl', "#{icon}.png")
-    image = File.join(GEM_PATH, 'img', "#{icon}.png") unless File.exists?(image)
+    image = File.join(@@image_dir, "#{icon}.png")
     case RUBY_PLATFORM
     when /mswin/
       growl += '.com'
