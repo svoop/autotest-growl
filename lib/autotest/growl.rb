@@ -74,11 +74,9 @@ module Autotest::Growl
       growl += '.com'
       system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}")
     when /darwin/
-      if @@remote_notification
-        system %(#{growl} -H localhost -n Autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick} &)
-      else
-        system %(#{growl} -w -n Autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick} &)
-      end
+      options = "-w -n Autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick}"
+      options << " -H localhost" if @@remote_notification
+      system %(#{growl} #{options} &)
     else
       raise "#{RUBY_PLATFORM} is not supported by autotest-growl" 
     end
