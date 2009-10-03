@@ -131,7 +131,7 @@ module Autotest::Growl
       else
         growl @label + 'Could not run tests.', '', 'error', 2
       end
-      @ran_test = true
+      @ran_tests = true
     end
     false
   end
