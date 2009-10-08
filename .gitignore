@@ -1,5 +1,7 @@
 *~
 .*~
+._*
 .DS_Store
+.idea
 pkg
 examples

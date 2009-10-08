@@ -1,6 +1,7 @@
 == Edge
 
 * 1 minor improvement
+  * Configurable location for custom icons (J. Edward Dewyea)
   * Update README
 
 == 0.1.6 2009-08-12
