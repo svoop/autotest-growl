@@ -1,6 +1,6 @@
-== Edge
+== 0.1.7 2009-10-09
 
-* 1 minor improvement
+* 2 minor improvements
   * Configurable location for custom icons (J. Edward Dewyea)
   * Update README
 
