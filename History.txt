@@ -1,3 +1,8 @@
+== Edge
+
+* 1 minor improvement
+  * Update README for development to reflect changes at Github
+
 == 0.1.7 2009-10-09
 
 * 2 minor improvements

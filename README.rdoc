@@ -124,15 +124,12 @@ displayed, go back to the System Preferences and disable the checkbox
 
 == DEVELOPMENT:
 
-You can install the bleeding-edge version as follows:
+You can install the bleeding edge version as follows:
 
-  sudo gem uninstall autotest-growl
-  sudo gem install svoop-autotest-growl --source http://gems.github.com
-
-Bleeding-edge gems contain a fourth version digit group (e.g. the .8 in 
-0.1.5.8) to make sure Github builds the gem whenever new code is committed.
-If there is no fourth version digit group, the edge version is identical
-to the stable version from Rubyforge.
+  git clone git://github.com/svoop/autotest-growl.git
+  cd autotest-growl
+  rake gem
+  rake install_gem
 
 Please submit issues on:
 
