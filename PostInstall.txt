@@ -14,3 +14,8 @@ for assistance.
 For more information, feedback and bug submissions, please visit:
 
 http://www.bitcetera.com/products/autotest-growl
+
+If you like this gem, please consider to recommend me on Working with
+Rails, thank you!
+
+http://workingwithrails.com/recommendation/new/person/11706-sven-schwyn

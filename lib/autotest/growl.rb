@@ -26,7 +26,7 @@ module Autotest::Growl
   @@clear_terminal = true
   @@hide_label = false
   @@show_modified_files = false
-  @@image_dir = File.join(GEM_PATH, 'img')
+  @@image_dir = File.join(GEM_PATH, 'img', 'ruby')
 
   ##
   # Whether to use remote or local notificaton (default).
@@ -61,7 +61,11 @@ module Autotest::Growl
   ##
   # Directory where notification icons can be found
   def self.image_dir=(path)
-    @@image_dir = path
+    if File.directory?(File.join(GEM_PATH, 'img', path))
+      @@image_dir = File.join(GEM_PATH, 'img', path)
+    else
+      @@image_dir = path
+    end
   end
 
   ##

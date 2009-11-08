@@ -44,15 +44,29 @@ Make sure Growl is installed on your computer. You can download it from:
 Mac OS X: http://growl.info
 Windows:  http://growlforwindows.com
 
+If you like this gem, please consider to recommend me on Working with
+Rails, thank you!
+
+http://workingwithrails.com/recommendation/new/person/11706-sven-schwyn
+
 == CONFIGURATION:
 
-=== Custom Icons
+=== Icons
 
-Using your own set of icons is pretty simple. Images should be named as
+Two icon sets are bundled with this gem:
+
+* ruby (default): The original Ruby logo dressed in traffic light colors.
+* ampelmaennchen: The famous traffic light man from the now extinct GDR.
+
+To choose an icon set, add the following to your ~/.autotest:
+
+  Autotest::Growl::image_dir = 'ampelmaennchen'
+
+Using your own icon set is pretty simple. Images should be named as
 follows: passed.png, pending.png, failed.png, error.png and info.png.
 
 Place these images in a directory of your choosing and specify its
-location in your ~/.autotest:
+location in your ~/.autotest, example:
 
   Autotest::Growl::image_dir = File.join(ENV['HOME'], '.autotest-growl')
 
