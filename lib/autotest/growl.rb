@@ -69,14 +69,21 @@ module Autotest::Growl
   def self.growl(title, message, icon, priority=0, stick="")
     growl = File.join(GEM_PATH, 'growl', 'growlnotify')
     image = File.join(@@image_dir, "#{icon}.png")
-    case RUBY_PLATFORM
-    when /mswin/
+    platform = RUBY_PLATFORM
+    if platform =~ /java/i
+      #http://lopica.sourceforge.net/os.html
+      platform = Java::java.lang.System.getProperty("os.name")
+    end
+    case platform
+    when /mswin|windows/i
       growl += '.com'
       system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}")
-    when /darwin/
+    when /darwin|mac os/i
       options = "-w -n Autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick}"
       options << " -H localhost" if @@remote_notification
       system %(#{growl} #{options} &)
+    when /linux|bsd/i
+      system "notify-send '#{title}' '#{message}' -i #{image} -t 5000"
     else
       raise "#{RUBY_PLATFORM} is not supported by autotest-growl" 
     end
