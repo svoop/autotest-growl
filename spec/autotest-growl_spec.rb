@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "handling results" do
   before do
@@ -12,7 +12,6 @@ describe "handling results" do
       @autotest.results = ["10 examples, 0 failures"]
       @autotest.hook(:ran_command)
     end
-
     it "should show a 'failed' notification" do
       Autotest::Growl.should_receive(:growl).and_return('failed')
       @autotest.results = ["10 examples, 1 failures"]

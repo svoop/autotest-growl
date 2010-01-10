@@ -1,8 +1,10 @@
 == Edge
 
-* 2 minor improvements
+* 2 major improvements
+  * Add support for more platforms (Martin Vielsmaier)
   * Add support for bundled icon sets
-  * Update README for development to reflect changes at Github
+* 1 minor improvement
+  * Update README for development to reflect changes on Github
 
 == 0.1.7 2009-10-09
 

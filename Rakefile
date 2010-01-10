@@ -1,26 +1,59 @@
 require 'rubygems'
-gem 'hoe', '>= 2.1.0'
-require 'hoe'
-require 'fileutils'
-require './lib/autotest-growl'
+require 'rake'
 
-Hoe.plugin :newgem
-# Hoe.plugin :website
-# Hoe.plugin :cucumberfeatures
-
-$hoe = Hoe.spec 'autotest-growl' do
-  self.developer              'Sven Schwyn', 'ruby@bitcetera.com'
-  self.summary              = %q{Next generation Growl notification support for ZenTest's autotest.}
-  self.description          = %q{This gem aims to improve support for Growl notification by ZenTest's autotest. It comes with a nice colored Ruby icon set and - for now - supports Cucumber by means of a workaround.}
-  self.url                  = %q{http://www.bitcetera.com/products/autotest-growl}
-  self.post_install_message = "\n\e[1;32m" + File.read('PostInstall.txt') + "\e[0m\n"
-  self.rubyforge_name       = self.name
-  self.extra_deps           = [
-                                ['ZenTest','>= 4.1.3'],
-                              ]
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gem|
+    gem.name = "autotest-growl"
+    gem.summary = %q{Growl notification support for autotest.}
+    gem.description = %q{This gem aims to improve support for Growl notifications by autotest.}
+    gem.email = "ruby@bitcetera.com"
+    gem.homepage = "http://www.bitcetera.com/products/autotest-growl"
+    gem.authors = ["Sven Schwyn"]
+    gem.post_install_message = "\n\e[1;32m" + File.read('PostInstall.txt') + "\e[0m\n"
+    gem.files = [
+      "CHANGELOG.txt",
+      "growl/growlnotify",
+      "growl/growlnotify.com",
+      "img/ruby/error.png",
+      "img/ruby/failed.png",
+      "img/ruby/info.png",
+      "img/ruby/passed.png",
+      "img/ruby/pending.png",
+      "lib/autotest/growl.rb",
+      "lib/autotest/result.rb",
+    ]
+    gem.add_development_dependency "rspec", ">= 1.2.9"
+#   gem.add_dependency "autotest", ">= 4.1.4"
+    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+  end
+  Jeweler::GemcutterTasks.new
+rescue LoadError
+  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
 
-require 'newgem/tasks'
-Dir['tasks/**/*.rake'].each { |t| load t }
+require 'spec/rake/spectask'
+Spec::Rake::SpecTask.new(:spec) do |spec|
+  spec.libs << 'lib' << 'spec'
+  spec.spec_files = FileList['spec/**/*_spec.rb']
+end
 
-task :default => [:spec]
+Spec::Rake::SpecTask.new(:rcov) do |spec|
+  spec.libs << 'lib' << 'spec'
+  spec.pattern = 'spec/**/*_spec.rb'
+  spec.rcov = true
+end
+
+task :spec => :check_dependencies
+
+task :default => :spec
+
+require 'rake/rdoctask'
+Rake::RDocTask.new do |rdoc|
+  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "autotest-growl #{version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end
