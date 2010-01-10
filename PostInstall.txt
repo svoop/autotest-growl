@@ -3,10 +3,11 @@ In order to use autotest-growl, the following line has to be added to your
 
 require 'autotest/growl'
 
-Make sure Growl is installed on your computer. Download it from:
+Make sure the notification service installed on your computer:
 
-http://growl.info (Mac OS X)
-http://growlforwindows.com (Windows)
+http://growl.info (Growl for Mac OS X)
+http://growlforwindows.com (Growl for Windows)
+http://www.galago-project.org (libnotify for Linux)
 
 If Growl notifications are not always displayed, take a look at the README
 for assistance.

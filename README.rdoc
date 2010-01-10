@@ -6,23 +6,14 @@
 
 == DESCRIPTION:
 
-This gem aims to improve support for Growl notification by ZenTest's autotest.
-It comes with a nice colored Ruby icon set and - for now - supports Cucumber 
-notifications by means of a workaround.
-
-The priority of a notification is set according to the actual result so you
-can  configure Growl to style the notifications differently based on these
-priorities:
-
-* 2 for error or failed
-* 0 for info
-* -1 for pending, undefined or unknown
-* -2 for passed
+This gem aims to improve support for Growl notifications by autotest. It
+comes  with a nice and colorful icon sets and supports several testing
+frameworks on different platforms.
 
 Furthermore the terminal running autotest is cleared on every cycle (unless
 configured otherwise). Don't worry though, it's still possible to scroll up
-to see the output of previous cycles - at least on the Terminal.app from
-Apple.
+to see the output of previous cycles - at least when using the Terminal.app
+bundled with Mac OS X.
 
 == REQUIREMENTS:
 
@@ -46,20 +37,40 @@ Growl must be installed on your computer. You can download it from:
 Mac OS X: http://growl.info
 Windows:  http://growlforwindows.com
 
-On Linux you can use libnotify instead. The binary notify-send must be in
-your PATH:
+On Linux you can use libnotify instead, however, some of the features 
+won't work. The binary notify-send must be in your PATH:
 
 Linux:    http://www.galago-project.org
-
-Make sure Zentest <= 4.1.3 is NOT installed, as it has a lib 'autotest/growl' 
-that sometimes takes precedence.
 
 If you like this gem, please consider to recommend me on Working with
 Rails, thank you!
 
 http://workingwithrails.com/recommendation/new/person/11706-sven-schwyn
 
+== UPDATE FROM <0.1.8
+
+As of version 0.1.8 autotest-growl no longer requires the ZenTest gem but
+the lighter and improved autotest gem. To update do the following: 
+
+  sudo gem uninstall ZenTest
+  sudo gem update autotest-growl
+
+And only if you need all the functionality of ZenTest:
+
+  sudo gem install zentest-without-autotest
+
 == CONFIGURATION:
+
+=== Priorities
+
+The priority of a notification is set according to the actual result so you
+can  configure Growl to style the notifications differently based on these
+priorities:
+
+* 2 for error or failed
+* 0 for info
+* -1 for pending, undefined or unknown
+* -2 for passed
 
 === Icons
 
@@ -112,18 +123,8 @@ notification listing the files modified before tests are re-run.
 
 === Loading the Plugin Seems to Fail
 
-Most likely you still have an old version of ZenTest <= 4.0.0 installed,
-check it with:
-
-  gem list ZenTest
-
-To uninstall a specific version (e.g. 4.0.0), type:
-
-  sudo gem uninstall ZenTest --version=4.0.0
-
-Or remove all outdated versions of all installed gems:
-
-  sudo gem cleanup
+The reason may be ZenTest which must not be installed. See "Update from 
+< 0.1.8" for more on this.
 
 === Unreliable Growl Notifications on Mac OS X
 
