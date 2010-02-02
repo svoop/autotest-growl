@@ -1,10 +1,12 @@
-== Edge
+== 0.2.0 2010-02-02
 
-* 2 major improvements
+* 3 major improvements
+  * Change dependency from "ZenTest" to lightweight "autotest"
   * Add support for more platforms (Martin Vielsmaier)
   * Add support for bundled icon sets
-* 1 minor improvement
+* 2 minor improvements
   * Update README for development to reflect changes on Github
+  * New icon set "ampelmaennchen"
 
 == 0.1.7 2009-10-09
 

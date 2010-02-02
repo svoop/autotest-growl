@@ -20,3 +20,10 @@ If you like this gem, please consider to recommend me on Working with
 Rails, thank you!
 
 http://workingwithrails.com/recommendation/new/person/11706-sven-schwyn
+
++-------------------------------------------------------------------------+
+| READ THIS IF YOU ARE UPGRADING FROM 0.1.X                               |
+| As of 0.2.0 this gem no longer depends on the rather heavy ZenTest gem  |
+| but the more lightweight autotest gem. You MUST uninstall ZenTest now!  |
+| Please refer to the README in case you need more ZenTest functionality. |
++-------------------------------------------------------------------------+

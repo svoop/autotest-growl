@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{autotest-growl}
-  s.version = "0.1.8"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sven Schwyn"]
-  s.date = %q{2010-01-10}
+  s.date = %q{2010-02-02}
   s.description = %q{This gem aims to improve support for Growl notifications by autotest.}
   s.email = %q{ruby@bitcetera.com}
   s.extra_rdoc_files = [
@@ -20,6 +20,11 @@ Gem::Specification.new do |s|
     "CHANGELOG.txt",
      "growl/growlnotify",
      "growl/growlnotify.com",
+     "img/ampelmaennchen/error.png",
+     "img/ampelmaennchen/failed.png",
+     "img/ampelmaennchen/info.png",
+     "img/ampelmaennchen/passed.png",
+     "img/ampelmaennchen/pending.png",
      "img/ruby/error.png",
      "img/ruby/failed.png",
      "img/ruby/info.png",
@@ -35,10 +40,11 @@ Gem::Specification.new do |s|
 
 require 'autotest/growl'
 
-Make sure Growl is installed on your computer. Download it from:
+Make sure the notification service installed on your computer:
 
-http://growl.info (Mac OS X)
-http://growlforwindows.com (Windows)
+http://growl.info (Growl for Mac OS X)
+http://growlforwindows.com (Growl for Windows)
+http://www.galago-project.org (libnotify for Linux)
 
 If Growl notifications are not always displayed, take a look at the README
 for assistance.
@@ -51,6 +57,13 @@ If you like this gem, please consider to recommend me on Working with
 Rails, thank you!
 
 http://workingwithrails.com/recommendation/new/person/11706-sven-schwyn
+
++-------------------------------------------------------------------------+
+| READ THIS IF YOU ARE UPGRADING FROM 0.1.X                               |
+| As of 0.2.0 this gem no longer depends on the rather heavy ZenTest gem  |
+| but the more lightweight autotest gem. You MUST uninstall ZenTest now!  |
+| Please refer to the README in case you need more ZenTest functionality. |
++-------------------------------------------------------------------------+
 [0m
 }
   s.rdoc_options = ["--charset=UTF-8"]
@@ -67,12 +80,15 @@ http://workingwithrails.com/recommendation/new/person/11706-sven-schwyn
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
+      s.add_development_dependency(%q<rspec>, [">= 1.3.0"])
+      s.add_runtime_dependency(%q<autotest>, [">= 4.2.4"])
     else
-      s.add_dependency(%q<rspec>, [">= 1.2.9"])
+      s.add_dependency(%q<rspec>, [">= 1.3.0"])
+      s.add_dependency(%q<autotest>, [">= 4.2.4"])
     end
   else
-    s.add_dependency(%q<rspec>, [">= 1.2.9"])
+    s.add_dependency(%q<rspec>, [">= 1.3.0"])
+    s.add_dependency(%q<autotest>, [">= 4.2.4"])
   end
 end
 
