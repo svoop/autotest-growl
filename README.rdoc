@@ -17,7 +17,7 @@ bundled with Mac OS X.
 
 == REQUIREMENTS:
 
-* autotest >= 4.1.4
+* autotest >= 4.2.4
 * Growl >= 1.1.5 on Mac OS X   -or-
 * Growl for Windows >= 2.0b18 on Windows   -or-
 * libnotify >= 0.4.5 on Linux
@@ -47,9 +47,9 @@ Rails, thank you!
 
 http://workingwithrails.com/recommendation/new/person/11706-sven-schwyn
 
-== UPDATE FROM <0.1.8
+== UPDATE FROM 0.1.X
 
-As of version 0.1.8 autotest-growl no longer requires the ZenTest gem but
+As of version 0.2.0 autotest-growl no longer requires the ZenTest gem but
 the lighter and improved autotest gem. To update do the following: 
 
   sudo gem uninstall ZenTest
@@ -124,7 +124,7 @@ notification listing the files modified before tests are re-run.
 === Loading the Plugin Seems to Fail
 
 The reason may be ZenTest which must not be installed. See "Update from 
-< 0.1.8" for more on this.
+0.1.X" for more on this.
 
 === Unreliable Growl Notifications on Mac OS X
 
@@ -147,14 +147,20 @@ whether a firewall is blocking the connection. Once the notification is
 displayed, go back to the System Preferences and disable the checkbox
 "Allow remote application registration" again.
 
+=== No Notifications on Mac OS X 10.5
+
+If you are still on Leopard and notifications don't work for you, get your
+hands dirty and remove the "-n Autotest" argument from growl.rb. Make sure
+you submit a bug or comment on a related and existing bug, too. 
+
 == DEVELOPMENT:
 
 You can install the bleeding edge version as follows:
 
   git clone git://github.com/svoop/autotest-growl.git
   cd autotest-growl
-  rake gem
-  rake install_gem
+  rake build
+  sudo rake install
 
 Please submit issues on:
 

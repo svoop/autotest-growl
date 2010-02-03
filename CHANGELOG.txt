@@ -1,4 +1,4 @@
-== 0.2.0 2010-02-02
+== 0.2.0 2010-02-03
 
 * 3 major improvements
   * Change dependency from "ZenTest" to lightweight "autotest"
