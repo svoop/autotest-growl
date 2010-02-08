@@ -19,4 +19,5 @@ rdoc
 pkg
 
 ## PROJECT::SPECIFIC
+autotest-growl-*.gem
 samples
