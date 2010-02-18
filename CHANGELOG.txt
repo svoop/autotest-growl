@@ -1,3 +1,8 @@
+== Edge
+
+* 1 minor improvement
+  * Improved support for the Windows platform
+
 == 0.2.0 2010-02-03
 
 * 3 major improvements

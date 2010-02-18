@@ -76,7 +76,7 @@ module Autotest::Growl
     platform = RUBY_PLATFORM
     platform = Java::java.lang.System.getProperty("os.name") if platform =~ /java/i   # see http://lopica.sourceforge.net/os.html
     case platform
-    when /mswin|windows/i
+    when /mswin|windows|win32|mingw32/i
       growl += '.com'
       system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}")
     when /darwin|mac os/i
