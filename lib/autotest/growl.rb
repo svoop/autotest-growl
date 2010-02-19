@@ -75,13 +75,13 @@ module Autotest::Growl
     growl = File.join(GEM_PATH, 'growl', 'growlnotify')
     image = File.join(@@image_dir, "#{icon}.png")
     case Config::CONFIG['host_os']
-    when /darwin|mac os/i
+    when /mac os|darwin/i
       options = "-w -n Autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick}"
       options << " -H localhost" if @@remote_notification
       system %(#{growl} #{options} &)
     when /linux|bsd/i
       system %(notify-send "#{title}" "#{message}" -i #{image} -t 5000)
-    when /mswin|mingw/i
+    when /windows|mswin|mingw/i
       growl += '.com'
       system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}")
     else
