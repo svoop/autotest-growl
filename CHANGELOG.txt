@@ -1,7 +1,7 @@
-== Edge
+== 0.2.1 2010-02-18
 
 * 1 minor improvement
-  * Improved support for the Windows platform
+  * Better detection of the Windows platform (Charles Roper)
 
 == 0.2.0 2010-02-03
 

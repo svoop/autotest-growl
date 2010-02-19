@@ -181,6 +181,7 @@ Thanks to the following folks who have contributed to this project:
 * Konstantin Haase
 * J. Edward Dewyea
 * Martin Vielsmaier
+* Charles Roper
 
 == LICENSE:
 

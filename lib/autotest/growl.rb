@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'autotest'
+require 'rbconfig'
 require File.join(File.dirname(__FILE__), 'result')
 
 ##
@@ -73,20 +74,18 @@ module Autotest::Growl
   def self.growl(title, message, icon, priority=0, stick="")
     growl = File.join(GEM_PATH, 'growl', 'growlnotify')
     image = File.join(@@image_dir, "#{icon}.png")
-    platform = RUBY_PLATFORM
-    platform = Java::java.lang.System.getProperty("os.name") if platform =~ /java/i   # see http://lopica.sourceforge.net/os.html
-    case platform
-    when /mswin|windows|win32|mingw32/i
-      growl += '.com'
-      system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}")
+    case Config::CONFIG['host_os']
     when /darwin|mac os/i
       options = "-w -n Autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick}"
       options << " -H localhost" if @@remote_notification
       system %(#{growl} #{options} &)
     when /linux|bsd/i
       system %(notify-send "#{title}" "#{message}" -i #{image} -t 5000)
+    when /mswin|mingw/i
+      growl += '.com'
+      system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}")
     else
-      raise "#{platform} is not supported by autotest-growl" 
+      raise "#{Config::CONFIG['host_os']} is not supported by autotest-growl (feel free to submit a patch)" 
     end
   end
 
