@@ -1,3 +1,8 @@
+== 0.2.2 2010-02-27
+
+* 1 minor improvement
+  * Add important note about autotest and Rails to README
+
 == 0.2.1 2010-02-18
 
 * 1 minor improvement

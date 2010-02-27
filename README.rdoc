@@ -49,13 +49,20 @@ http://workingwithrails.com/recommendation/new/person/11706-sven-schwyn
 
 == UPDATE FROM 0.1.X
 
-As of version 0.2.0 autotest-growl no longer requires the ZenTest gem but
+As of version 0.2.0 autotest-fsevent no longer requires the ZenTest gem but
 the lighter and improved autotest gem. To update do the following: 
 
   sudo gem uninstall ZenTest
-  sudo gem update autotest-growl
+  sudo gem update autotest-fsevent
 
-And only if you need all the functionality of ZenTest:
+To use autotest with Rails, install the autotest-rails-pure gem instead of
+the famous autotest-rails gem which requires ZenTest:
+
+ sudo gem uninstall autotest-rails
+ sudo gem install autotest-rails-pure
+
+And in case one day you need the more advanced features of ZenTest, install
+the zentest-without-autotest gem alongside autotest:
 
   sudo gem install zentest-without-autotest
 
