@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{autotest-growl}
-  s.version = "0.2.1"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sven Schwyn"]
-  s.date = %q{2010-02-19}
+  s.date = %q{2010-03-03}
   s.description = %q{This gem aims to improve support for Growl notifications by autotest.}
   s.email = %q{ruby@bitcetera.com}
   s.extra_rdoc_files = [
@@ -59,10 +59,8 @@ Rails, thank you!
 http://workingwithrails.com/recommendation/new/person/11706-sven-schwyn
 
 +-------------------------------------------------------------------------+
-| READ THIS IF YOU ARE UPGRADING FROM 0.1.X                               |
-| As of 0.2.0 this gem no longer depends on the rather heavy ZenTest gem  |
-| but the more lightweight autotest gem. You MUST uninstall ZenTest now!  |
-| Please refer to the README in case you need more ZenTest functionality. |
+| UPGRADING USERS please take a look at the README now for important news |
+| related to modified dependencies since 0.1.x and Rails compatibility.   |
 +-------------------------------------------------------------------------+
 [0m
 }

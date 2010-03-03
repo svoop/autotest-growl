@@ -115,7 +115,7 @@ module Autotest::Growl
   # Parse the RSpec and Test::Unit results and send them to Growl.
   Autotest.add_hook :ran_command do |autotest|
     unless @@one_notification_per_run && @ran_tests
-      result = Result.new(autotest)
+      result = Autotest::Result.new(autotest)
       if result.exists?
         case result.framework
         when 'test-unit'        
@@ -147,7 +147,7 @@ module Autotest::Growl
   # Parse the Cucumber results and sent them to Growl.
   Autotest.add_hook :ran_features do |autotest|
     unless @@one_notification_per_run && @ran_features
-      result = Result.new(autotest)
+      result = Autotest::Result.new(autotest)
       if result.exists?
         case result.framework
         when 'cucumber'

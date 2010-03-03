@@ -1,3 +1,8 @@
+== 0.2.3 2010-03-03
+
+* 1 minor improvement
+  * Move the Result class into the Autotest namespace
+
 == 0.2.2 2010-02-27
 
 * 1 minor improvement

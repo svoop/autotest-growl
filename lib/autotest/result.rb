@@ -1,4 +1,4 @@
-class Result
+class Autotest::Result
 
   ##
   # Analyze test result lines and return the numbers in a hash.
