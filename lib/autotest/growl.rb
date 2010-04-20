@@ -91,8 +91,7 @@ module Autotest::Growl
       system %(notify-send "#{title}" "#{message}" -i #{image} -t 5000)
     when /windows|mswin|mingw/i
       growl += '.com'
-      sticky_switch = "/s:#{sticky}"
-      system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}" sticky_switch)
+      system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}" /s:#{sticky})
     else
       raise "#{Config::CONFIG['host_os']} is not supported by autotest-growl (feel free to submit a patch)" 
     end
