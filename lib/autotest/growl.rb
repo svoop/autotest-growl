@@ -78,19 +78,21 @@ module Autotest::Growl
 
   ##
   # Display a message through Growl.
-  def self.growl(title, message, icon, priority=0, stick="")
+  def self.growl(title, message, icon, priority=0, sticky=false)
     growl = File.join(GEM_PATH, 'growl', 'growlnotify')
     image = File.join(@@image_dir, "#{icon}.png")
     case Config::CONFIG['host_os']
     when /mac os|darwin/i
-      options = "-w -n Autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{stick}"
+      sticky_switch = sticky ? '-s' : ''
+      options = "-w -n Autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{sticky_switch}"
       options << " -H localhost" if @@remote_notification
       system %(#{growl} #{options} &)
     when /linux|bsd/i
       system %(notify-send "#{title}" "#{message}" -i #{image} -t 5000)
     when /windows|mswin|mingw/i
       growl += '.com'
-      system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}")
+      sticky_switch = "/s:#{sticky}"
+      system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}" sticky_switch)
     else
       raise "#{Config::CONFIG['host_os']} is not supported by autotest-growl (feel free to submit a patch)" 
     end
@@ -124,19 +126,18 @@ module Autotest::Growl
     unless @@one_notification_per_run && @ran_tests
       result = Autotest::Result.new(autotest)
       if result.exists?
-        sticky_switch = @@sticky_errors ? '-s' : ''
         case result.framework
         when 'test-unit'        
           if result.has?('test-error')
-            growl @label + 'Cannot run some unit tests.', "#{result.get('test-error')} in #{result.get('test')}", 'error', 2, sticky_switch
+            growl @label + 'Cannot run some unit tests.', "#{result.get('test-error')} in #{result.get('test')}", 'error', 2, @@sticky_errors
           elsif result.has?('test-failed')
-            growl @label + 'Some unit tests failed.', "#{result['test-failed']} of #{result.get('test-assertion')} in #{result.get('test')} failed", 'failed', 2, sticky_switch
+            growl @label + 'Some unit tests failed.', "#{result['test-failed']} of #{result.get('test-assertion')} in #{result.get('test')} failed", 'failed', 2, @@sticky_errors
           else
             growl @label + 'All unit tests passed.', "#{result.get('test-assertion')} in #{result.get('test')}", 'passed', -2
           end
         when 'rspec'
           if result.has?('example-failed')
-            growl @label + 'Some RSpec examples failed.', "#{result['example-failed']} of #{result.get('example')} failed", 'failed', 2, sticky_switch
+            growl @label + 'Some RSpec examples failed.', "#{result['example-failed']} of #{result.get('example')} failed", 'failed', 2, @@sticky_errors
           elsif result.has?('example-pending')
             growl @label + 'Some RSpec examples are pending.', "#{result['example-pending']} of #{result.get('example')} pending", 'pending', -1
           else
@@ -144,7 +145,7 @@ module Autotest::Growl
           end
         end
       else
-        growl @label + 'Could not run tests.', '', 'error', 2, sticky_switch
+        growl @label + 'Could not run tests.', '', 'error', 2, @@sticky_errors
       end
       @ran_tests = true
     end
@@ -157,7 +158,6 @@ module Autotest::Growl
     unless @@one_notification_per_run && @ran_features
       result = Autotest::Result.new(autotest)
       if result.exists?
-        sticky_switch = @@sticky_errors ? '-s' : ''
         case result.framework
         when 'cucumber'
           explanation = []
@@ -168,7 +168,7 @@ module Autotest::Growl
           elsif result.has?('scenario-failed') || result.has?('step-failed')
             explanation << "#{result['scenario-failed']} of #{result.get('scenario')} failed" if result['scenario-failed']
             explanation << "#{result['step-failed']} of #{result.get('step')} failed" if result['step-failed']
-            growl @label + 'Some Cucumber scenarios failed.', "#{explanation.join("\n")}", 'failed', 2, sticky_switch
+            growl @label + 'Some Cucumber scenarios failed.', "#{explanation.join("\n")}", 'failed', 2, @@sticky_errors
           elsif result.has?('scenario-pending') || result.has?('step-pending')
             explanation << "#{result['scenario-pending']} of #{result.get('scenario')} pending" if result['scenario-pending']
             explanation << "#{result['step-pending']} of #{result.get('step')} pending" if result['step-pending']
@@ -178,7 +178,7 @@ module Autotest::Growl
           end      
         end
       else
-        growl @label + 'Could not run features.', '', 'error', 2, sticky_switch
+        growl @label + 'Could not run features.', '', 'error', 2, @@sticky_errors
       end
       @ran_features = true
     end
