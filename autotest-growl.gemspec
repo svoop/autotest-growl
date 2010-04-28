@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{autotest-growl}
-  s.version = "0.2.3"
+  s.version = "0.2.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Sven Schwyn"]
-  s.date = %q{2010-03-03}
+  s.date = %q{2010-04-28}
   s.description = %q{This gem aims to improve support for Growl notifications by autotest.}
   s.email = %q{ruby@bitcetera.com}
   s.extra_rdoc_files = [
@@ -66,7 +66,7 @@ http://workingwithrails.com/recommendation/new/person/11706-sven-schwyn
 }
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Growl notification support for autotest.}
   s.test_files = [
     "spec/autotest-growl_spec.rb",
