@@ -1,7 +1,7 @@
 == 0.2.4 2010-04-28
 
 * 1 minor improvement
-  * Add support for sticky error notifications (Benjamin Ritcey)
+  * Add support for sticky error notifications (Ben Ritcey)
   
 == 0.2.3 2010-03-03
 
