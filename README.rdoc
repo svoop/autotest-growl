@@ -112,12 +112,20 @@ All tests have passed", add the following to your ~/.autotest:
 
   Autotest::Growl::hide_label = true
 
-=== One Notifications per Run
+=== One Notification per Run
 
 Allow only one test and one feature notification per run by adding the
 following to your ~/.autotest:
 
   Autotest::Growl::one_notification_per_run = true
+
+=== Make Failure and Error Notifications Sticky
+
+If you don't want to miss any failure or error notifications while you 
+get a cup of coffee, make them stay on your display until you explicitly
+click them away. Simply add the following to your ~/.autotest:
+
+  Autotest::Growl::sticky_failure_notifications = true
 
 === Show Modified Files
 
@@ -189,6 +197,7 @@ Thanks to the following folks who have contributed to this project:
 * J. Edward Dewyea
 * Martin Vielsmaier
 * Charles Roper
+* Benjamin Ritcey
 
 == LICENSE:
 
