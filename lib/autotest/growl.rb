@@ -24,11 +24,11 @@ module Autotest::Growl
 
   @@remote_notification = false
   @@one_notification_per_run = false
+  @@sticky_failure_notifications = false
   @@clear_terminal = true
   @@hide_label = false
   @@show_modified_files = false
   @@image_dir = File.join(GEM_PATH, 'img', 'ruby')
-  @@sticky_errors = false
 
   ##
   # Whether to use remote or local notificaton (default).
@@ -40,6 +40,12 @@ module Autotest::Growl
   # Whether to limit the number of notifications per run to one or not (default).
   def self.one_notification_per_run=(boolean)
     @@one_notification_per_run = boolean
+  end
+
+  ##
+  # Whether to make failure and error notifications sticky.
+  def self.sticky_failure_notifications=(boolean)
+    @@sticky_failure_notifications = boolean
   end
 
   ##
@@ -68,12 +74,6 @@ module Autotest::Growl
     else
       @@image_dir = path
     end
-  end
-
-  ##
-  # Whether to make error messages sticky.
-  def self.sticky_errors=(boolean)
-    @@sticky_errors = boolean
   end
 
   ##
@@ -127,15 +127,15 @@ module Autotest::Growl
         case result.framework
         when 'test-unit'        
           if result.has?('test-error')
-            growl @label + 'Cannot run some unit tests.', "#{result.get('test-error')} in #{result.get('test')}", 'error', 2, @@sticky_errors
+            growl @label + 'Cannot run some unit tests.', "#{result.get('test-error')} in #{result.get('test')}", 'error', 2, @@sticky_failure_notifications
           elsif result.has?('test-failed')
-            growl @label + 'Some unit tests failed.', "#{result['test-failed']} of #{result.get('test-assertion')} in #{result.get('test')} failed", 'failed', 2, @@sticky_errors
+            growl @label + 'Some unit tests failed.', "#{result['test-failed']} of #{result.get('test-assertion')} in #{result.get('test')} failed", 'failed', 2, @@sticky_failure_notifications
           else
             growl @label + 'All unit tests passed.', "#{result.get('test-assertion')} in #{result.get('test')}", 'passed', -2
           end
         when 'rspec'
           if result.has?('example-failed')
-            growl @label + 'Some RSpec examples failed.', "#{result['example-failed']} of #{result.get('example')} failed", 'failed', 2, @@sticky_errors
+            growl @label + 'Some RSpec examples failed.', "#{result['example-failed']} of #{result.get('example')} failed", 'failed', 2, @@sticky_failure_notifications
           elsif result.has?('example-pending')
             growl @label + 'Some RSpec examples are pending.', "#{result['example-pending']} of #{result.get('example')} pending", 'pending', -1
           else
@@ -143,7 +143,7 @@ module Autotest::Growl
           end
         end
       else
-        growl @label + 'Could not run tests.', '', 'error', 2, @@sticky_errors
+        growl @label + 'Could not run tests.', '', 'error', 2, @@sticky_failure_notifications
       end
       @ran_tests = true
     end
@@ -166,7 +166,7 @@ module Autotest::Growl
           elsif result.has?('scenario-failed') || result.has?('step-failed')
             explanation << "#{result['scenario-failed']} of #{result.get('scenario')} failed" if result['scenario-failed']
             explanation << "#{result['step-failed']} of #{result.get('step')} failed" if result['step-failed']
-            growl @label + 'Some Cucumber scenarios failed.', "#{explanation.join("\n")}", 'failed', 2, @@sticky_errors
+            growl @label + 'Some Cucumber scenarios failed.', "#{explanation.join("\n")}", 'failed', 2, @@sticky_failure_notifications
           elsif result.has?('scenario-pending') || result.has?('step-pending')
             explanation << "#{result['scenario-pending']} of #{result.get('scenario')} pending" if result['scenario-pending']
             explanation << "#{result['step-pending']} of #{result.get('step')} pending" if result['step-pending']
@@ -176,7 +176,7 @@ module Autotest::Growl
           end      
         end
       else
-        growl @label + 'Could not run features.', '', 'error', 2, @@sticky_errors
+        growl @label + 'Could not run features.', '', 'error', 2, @@sticky_failure_notifications
       end
       @ran_features = true
     end
