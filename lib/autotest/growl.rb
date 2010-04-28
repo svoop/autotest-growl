@@ -83,8 +83,7 @@ module Autotest::Growl
     image = File.join(@@image_dir, "#{icon}.png")
     case Config::CONFIG['host_os']
     when /mac os|darwin/i
-      sticky_switch = sticky ? '-s' : ''
-      options = "-w -n Autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{sticky_switch}"
+      options = "-w -n Autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{'-s' if sticky}"
       options << " -H localhost" if @@remote_notification
       system %(#{growl} #{options} &)
     when /linux|bsd/i
