@@ -28,8 +28,7 @@ begin
       "lib/autotest/growl.rb",
       "lib/autotest/result.rb",
     ]
-    gem.add_development_dependency "rspec", ">= 1.3.0"
-    gem.add_dependency "autotest", ">= 4.2.4"
+    gem.add_development_dependency "rspec", "~> 1.3"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new

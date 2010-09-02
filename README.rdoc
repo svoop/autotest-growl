@@ -17,14 +17,21 @@ bundled with Mac OS X.
 
 == REQUIREMENTS:
 
-* autotest >= 4.2.4
-* Growl >= 1.1.5 on Mac OS X   -or-
-* Growl for Windows >= 2.0b18 on Windows   -or-
+* either autotest (recommened) or ZenTest
+* Growl >= 1.1.5 on Mac OS X   --OR--
+* Growl for Windows >= 2.0b18 on Windows   --OR--
 * libnotify >= 0.4.5 on Linux
 
 == INSTALL:
 
-First install the gem:
+First of all, you have to decide whether you want to use the lightweight
+autotest gem (recommended) or the more comprehensive ZenTest gem and install 
+either of them:
+
+  sudo gem install autotest     --OR--
+  sudo gem install ZenTest
+
+Now install this gem:
 
   sudo gem install autotest-growl
 
@@ -49,11 +56,13 @@ http://workingwithrails.com/recommendation/new/person/11706-sven-schwyn
 
 == UPDATE FROM 0.1.X
 
-As of version 0.2.0 autotest-fsevent no longer requires the ZenTest gem but
-the lighter and improved autotest gem. To update do the following: 
+As of version 0.2.X autotest-growl no longer requires the ZenTest gem but
+either ZenTest or it's lighter twin autotest (recommended). To update and
+switch do the following:
 
   sudo gem uninstall ZenTest
-  sudo gem update autotest-fsevent
+  sudo gem install autotest
+  sudo gem update autotest-growl
 
 To use autotest with Rails, install the autotest-rails-pure gem instead of
 the famous autotest-rails gem which requires ZenTest:
@@ -203,7 +212,7 @@ Thanks to the following folks who have contributed to this project:
 
 (The MIT License)
 
-Copyright (c) 2009 Sven Schwyn
+Copyright (c) 2010 Sven Schwyn
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

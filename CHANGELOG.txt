@@ -1,3 +1,9 @@
+== 0.2.5 2010-09-02
+
+* 2 minor improvements
+  * Remove dependency on autotest
+  * Loosen dependency on rspec
+
 == 0.2.4 2010-04-28
 
 * 1 minor improvement
