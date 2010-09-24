@@ -1,3 +1,8 @@
+== 0.2.6 2010-09-24
+
+* 1 minor improvement
+  * Accept cygwin as host_os
+
 == 0.2.5 2010-09-02
 
 * 2 minor improvements

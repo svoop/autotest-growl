@@ -88,7 +88,7 @@ module Autotest::Growl
       system %(#{growl} #{options} &)
     when /linux|bsd/i
       system %(notify-send "#{title}" "#{message}" -i #{image} -t 5000)
-    when /windows|mswin|mingw/i
+    when /windows|mswin|mingw|cygwin/i
       growl += '.com'
       system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}" /s:#{sticky})
     else
