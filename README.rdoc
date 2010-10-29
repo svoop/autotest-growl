@@ -207,6 +207,7 @@ Thanks to the following folks who have contributed to this project:
 * Martin Vielsmaier
 * Charles Roper
 * Ben Ritcey
+* Patrick Aikens
 
 == LICENSE:
 
