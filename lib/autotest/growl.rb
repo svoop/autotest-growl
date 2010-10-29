@@ -90,9 +90,7 @@ module Autotest::Growl
       system %(notify-send "#{title}" "#{message}" -i #{image} -t 5000)
     when /windows|mswin|mingw|cygwin/i
       growl += '.com'
-			if(Config::CONFIG['host_os'] =~ /cygwin/i)
-				image = `cygpath -w #{image}`
-			end
+			image = `cygpath -w #{image}` if Config::CONFIG['host_os'] =~ /cygwin/i
       system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}" /s:#{sticky})
     else
       raise "#{Config::CONFIG['host_os']} is not supported by autotest-growl (feel free to submit a patch)" 
