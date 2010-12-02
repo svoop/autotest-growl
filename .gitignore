@@ -1,26 +1,5 @@
-## MAC OS
+pkg/*
+*.gem
+.bundle
 .DS_Store
-
-## TEXTMATE
-*.tmproj
-tmtags
-
-## EMACS
-*~
-\#*
-.\#*
-
-## VIM
-*.swp
-
-## PROJECT::GENERAL
-coverage
-rdoc
-pkg
-
-## PROJECT::SPECIFIC
-autotest-growl-*.gem
 samples
-
-## RVM
-.rvmrc
