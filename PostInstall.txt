@@ -1,6 +1,6 @@
-In order to use autotest-fsevent, install either the autotest gem
-(recommended) or the ZenTest gem and then add the following line to 
-your ~/.autotest file:
+In order to use autotest-growl, install either the comprehensive 
+ZenTest gem or the lightweight autotest-standalone gem and then add the 
+following line to your ~/.autotest file:
 
 require 'autotest/growl'
 

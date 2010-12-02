@@ -17,19 +17,19 @@ bundled with Mac OS X.
 
 == REQUIREMENTS:
 
-* either autotest (recommened) or ZenTest
+* any ZenTest compatible test suite
 * Growl >= 1.1.5 on Mac OS X   --OR--
 * Growl for Windows >= 2.0b18 on Windows   --OR--
 * libnotify >= 0.4.5 on Linux
 
 == INSTALL:
 
-First of all, you have to decide whether you want to use the lightweight
-autotest gem (recommended) or the more comprehensive ZenTest gem and install 
-either of them:
+First of all, you have to decide whether you want to use the comprehensive
+ZenTest gem or the lightweight autotest-standalone gem and install either 
+of them. (See "Autotest" below for more on this.)
 
-  sudo gem install autotest     --OR--
-  sudo gem install ZenTest
+  sudo gem install ZenTest   --OR--
+  sudo gem install autotest-standalone
 
 Now install this gem:
 
@@ -54,26 +54,24 @@ Rails, thank you!
 
 http://workingwithrails.com/recommendation/new/person/11706-sven-schwyn
 
-== UPDATE FROM 0.1.X
+== AUTOTEST:
 
-As of version 0.2.X autotest-growl no longer requires the ZenTest gem but
-either ZenTest or it's lighter twin autotest (recommended). To update and
-switch do the following:
+You can use any ZenTest-compatible test suite with this gem, which basically
+boils down to either of the following two sets of gems.
 
-  sudo gem uninstall ZenTest
-  sudo gem install autotest
-  sudo gem update autotest-growl
+Comprehensive test suite by Ryan Davis:
+* ZenTest
+* autotest-rails (for Ruby on Rails compatibility)
 
-To use autotest with Rails, install the autotest-rails-pure gem instead of
-the famous autotest-rails gem which requires ZenTest:
+Lightweight test suite by Michael Grosser:
+* autotest-standalone
+* autotest-rails-pure (for Ruby on Rails compatibility)
+* zentest-without-autotest (for full ZenTest compatibility)
 
- sudo gem uninstall autotest-rails
- sudo gem install autotest-rails-pure
-
-And in case one day you need the more advanced features of ZenTest, install
-the zentest-without-autotest gem alongside autotest:
-
-  sudo gem install zentest-without-autotest
+Note: Due to a naming disagreement, starting from version 4.4.6 the autotest
+gem is no longer a lightweight fork but only an empty gem which requires 
+ZenTest. Switch to the autotest-standalone gem if you want to stick with the
+lightweight approach.
 
 == CONFIGURATION:
 
@@ -145,10 +143,11 @@ notification listing the files modified before tests are re-run.
 
 == TROUBLESHOOTING:
 
-=== Loading the Plugin Seems to Fail
+=== Autotest Binary Not Present
 
-The reason may be ZenTest which must not be installed. See "Update from 
-0.1.X" for more on this.
+Make sure you have either the ZenTest gem or the autotest-standalone gem
+installed. This dependency has been dropped as of autotest-growl-0.2.5 in
+order to allow any compatible test suite.
 
 === Unreliable Growl Notifications on Mac OS X
 

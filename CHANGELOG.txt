@@ -1,3 +1,8 @@
+== 0.2.8 2010-12-02
+
+* 1 minor improvement
+  * Update README due to autotest naming disagreement
+
 == 0.2.7 2010-10-29
 
 * 1 minor improvement
