@@ -1,12 +1,9 @@
-<<<<<<< HEAD
 == 0.2.8 2010-12-02
 
 * 2 minor improvements
   * Update README due to autotest naming disagreement
   * Switch from Jeweler to Bundler for development
 
-=======
->>>>>>> 33b9db1484f1570710104e933ae1f79e5492be18
 == 0.2.7 2010-10-29
 
 * 1 minor improvement

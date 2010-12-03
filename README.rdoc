@@ -182,8 +182,9 @@ You can install the bleeding edge version as follows:
 
   git clone git://github.com/svoop/autotest-growl.git
   cd autotest-growl
+  bundle install
   rake build
-  sudo rake install
+  rake install
 
 Please submit issues on:
 
