@@ -134,6 +134,14 @@ click them away. Simply add the following to your ~/.autotest:
 
   Autotest::Growl::sticky_failure_notifications = true
 
+=== Custom Options
+
+You can pass any custom option to the Growl binary. For instance to 
+set a non-standard port for remote notifications, add the following to
+your ~/.autotest:
+
+  Autotest::Growl::custom_options = '--port 54321'
+
 === Show Modified Files
 
 Add the following to your ~/.autotest if you would like to receive a Growl
@@ -169,6 +177,14 @@ If you get a NSPortTimeoutException, you should restart Growl and check
 whether a firewall is blocking the connection. Once the notification is 
 displayed, go back to the System Preferences and disable the checkbox
 "Allow remote application registration" again.
+
+=== Duplicate Notifications
+
+Some people reported problems with duplicate notifications on some versions
+of Mac OS X 10.5. If you experience this oddity, add the following to your
+~/.autotest:
+
+  Autotest::Growl::custom_options = '-w'
 
 === No Notifications on Mac OS X 10.5
 

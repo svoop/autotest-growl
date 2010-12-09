@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    autotest-growl (0.2.8)
+    autotest-growl (0.2.9)
 
 GEM
   remote: http://rubygems.org/

@@ -25,6 +25,7 @@ module Autotest::Growl
   @@remote_notification = false
   @@one_notification_per_run = false
   @@sticky_failure_notifications = false
+  @@custom_options = ''
   @@clear_terminal = true
   @@hide_label = false
   @@show_modified_files = false
@@ -46,6 +47,12 @@ module Autotest::Growl
   # Whether to make failure and error notifications sticky.
   def self.sticky_failure_notifications=(boolean)
     @@sticky_failure_notifications = boolean
+  end
+
+  ##
+  # Custom options passed to the notification binary
+  def self.custom_options=(options)
+    @@custom_options = options
   end
 
   ##
@@ -83,15 +90,15 @@ module Autotest::Growl
     image = File.join(@@image_dir, "#{icon}.png")
     case Config::CONFIG['host_os']
     when /mac os|darwin/i
-      options = "-w -n Autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{'-s' if sticky}"
+      options = "-n Autotest --image '#{image}' -p #{priority} -m '#{message}' '#{title}' #{'-s' if sticky} #{@@custom_options}"
       options << " -H localhost" if @@remote_notification
       system %(#{growl} #{options} &)
     when /linux|bsd/i
-      system %(notify-send "#{title}" "#{message}" -i #{image} -t 5000)
+      system %(notify-send "#{title}" "#{message}" -i #{image} -t 5000 #{@@custom_options})
     when /windows|mswin|mingw|cygwin/i
       growl += '.com'
 			image = `cygpath -w #{image}` if Config::CONFIG['host_os'] =~ /cygwin/i
-      system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}" /s:#{sticky})
+      system %(#{growl} #{message.inspect} /a:"Autotest" /r:"Autotest" /n:"Autotest" /i:"#{image}" /p:#{priority} /t:"#{title}" /s:#{sticky} #{@@custom_options})
     else
       raise "#{Config::CONFIG['host_os']} is not supported by autotest-growl (feel free to submit a patch)" 
     end
