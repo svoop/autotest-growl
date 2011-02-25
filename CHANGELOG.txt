@@ -1,3 +1,8 @@
+== 0.2.10 2011-02-25
+
+* 1 minor improvement
+  * Improve notifications for Windows (Gordon Thiesfeld)
+
 == 0.2.9 2010-12-09
 
 * 1 minor improvement

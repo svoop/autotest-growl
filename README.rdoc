@@ -224,6 +224,7 @@ Thanks to the following folks who have contributed to this project:
 * Charles Roper
 * Ben Ritcey
 * Patrick Aikens
+* Gordon Thiesfeld
 
 == LICENSE:
 
