@@ -1,1 +1,1 @@
-rvm ruby-1.9.2-p136@autotest-growl
+rvm use ruby-1.9.2-p180@autotest-growl --create
