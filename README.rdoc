@@ -192,6 +192,14 @@ If you are still on Leopard and notifications don't work for you, get your
 hands dirty and remove the "-n Autotest" argument from growl.rb. Make sure
 you submit a bug or comment on a related and existing bug, too. 
 
+=== Strange Characters in Terminal
+
+If strange characters show up in the terminal and maybe even lock it up,
+make sure it is set to "xterm-color" or disable the terminal clear
+sequence by adding the follogin to your ~/.autotest:
+
+  Autotest::Growl::clear_terminal = false
+
 == DEVELOPMENT:
 
 You can install the bleeding edge version as follows:
