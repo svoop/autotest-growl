@@ -89,7 +89,7 @@ module Autotest::Growl
     growl = File.join(GEM_PATH, 'growl', 'growlnotify')
     sender = 'Autotest'
     image = File.join(@@image_dir, "#{icon}.png")
-    case Config::CONFIG['host_os']
+    case RbConfig::CONFIG['host_os']
     when /mac os|darwin/i
       options = %(-n "#{sender}" --image "#{image}" -p #{priority} -m "#{message}" "#{title}" #{'-s' if sticky} #{@@custom_options})
       options << " -H localhost" if @@remote_notification
@@ -99,12 +99,12 @@ module Autotest::Growl
       system %(notify-send #{options})
     when /windows|mswin|mingw|cygwin/i
       growl += '.com'
-			image = `cygpath -w #{image}` if Config::CONFIG['host_os'] =~ /cygwin/i
+			image = `cygpath -w #{image}` if RbConfig::CONFIG['host_os'] =~ /cygwin/i
       options = %(/a:"#{sender}" /n:"#{sender}-#{icon}" /i:"#{image}" /p:#{priority} /t:"#{title}" /s:#{sticky} /silent:true)
       options << %( /r:"#{sender}-failed","#{sender}-passed","#{sender}-pending","#{sender}-error")
       system %(#{growl} #{message.inspect} #{options})
     else
-      raise "#{Config::CONFIG['host_os']} is not supported by autotest-growl (feel free to submit a patch)" 
+      raise "#{RbConfig::CONFIG['host_os']} is not supported by autotest-growl (feel free to submit a patch)" 
     end
   end
 
