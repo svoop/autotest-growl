@@ -10,6 +10,9 @@ http://growl.info (Growl for Mac OS X)
 http://growlforwindows.com (Growl for Windows)
 http://www.galago-project.org (libnotify for Linux)
 
+Mac OS X users only: Make sure you have an adequate version of Growl
+installed, take a look at the README for assistance.
+
 If Growl notifications are not always displayed, take a look at the README
 for assistance.
 
