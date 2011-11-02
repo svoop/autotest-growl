@@ -95,8 +95,9 @@ module Autotest::Growl
       options << " -H localhost" if @@remote_notification
       system %(#{growl} #{options} &)
     when /linux|bsd/i
+      growl = 'notify-send'
       options = %("#{title}" "#{message}" -i #{image} -t 5000 #{@@custom_options})
-      system %(notify-send #{options})
+      system %(#{growl} #{options})
     when /windows|mswin|mingw|cygwin/i
       growl += '.com'
 			image = `cygpath -w #{image}` if RbConfig::CONFIG['host_os'] =~ /cygwin/i

@@ -1,7 +1,15 @@
 #!/bin/bash
 
-if [[ `uname -r` == 11* ]]; then
-  $0-1.3 "$@"
-else
-  $0-1.1.5 "$@"
-fi
+version=`osascript -e 'get version of application "Growl"' 2>&1`
+case "$version" in
+  *error*)
+    echo "Growl not found: please install Growl and try again"
+    exit 1
+    ;;
+  1.[012]*)
+    $0-1.1.5 "$@"
+    ;;
+  *)
+    $0-1.3 "$@"
+    ;;
+esac
