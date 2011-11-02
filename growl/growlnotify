@@ -1,8 +1,12 @@
 #!/bin/bash
 
-version=`osascript -e 'get version of application "Growl"' 2>&1`
+for application in "Growl" "GrowlHelperApp"; do
+  version=`osascript -e "get version of application \"$application\"" 2>/dev/null`
+  if [ $? -eq 0 ]; then break; fi
+done
+
 case "$version" in
-  *error*)
+  "")
     echo "Growl not found: please install Growl and try again"
     exit 1
     ;;

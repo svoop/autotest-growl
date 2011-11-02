@@ -1,3 +1,8 @@
+== 0.2.16 2011-11-02
+
+* 1 minor improvement
+  * Fix growlnotify chooser code
+
 == 0.2.15 2011-11-02
 
 * 1 minor improvement
