@@ -102,7 +102,7 @@ module Autotest::Growl
       growl += '.com'
 			image = `cygpath -w #{image}` if RbConfig::CONFIG['host_os'] =~ /cygwin/i
       options = %(/a:"#{sender}" /n:"#{sender}-#{icon}" /i:"#{image}" /p:#{priority} /t:"#{title}" /s:#{sticky} /silent:true)
-      options << %( /r:"#{sender}-failed","#{sender}-passed","#{sender}-pending","#{sender}-error")
+      options << %( /r:"#{sender}-failed","#{sender}-passed","#{sender}-pending","#{sender}-error","#{sender}-info")
       system %(#{growl} #{message.inspect} #{options})
     else
       raise "#{RbConfig::CONFIG['host_os']} is not supported by autotest-growl (feel free to submit a patch)" 
