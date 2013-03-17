@@ -28,6 +28,7 @@ module Autotest::Growl
   @@custom_options = ''
   @@clear_terminal = true
   @@hide_label = false
+  @@label_override = nil
   @@show_modified_files = false
   @@image_dir = File.join(GEM_PATH, 'img', 'ruby')
 
@@ -65,6 +66,12 @@ module Autotest::Growl
   # Whether to display the label (default) or not.
   def self.hide_label=(boolean)
     @@hide_label = boolean
+  end
+
+  ##
+  # Set the label to be shown.
+  def self.label=(string)
+    @@label_override = string
   end
 
   ##
@@ -125,7 +132,7 @@ module Autotest::Growl
   ##
   # Set the label and clear the terminal.
   Autotest.add_hook :run_command do
-    @label = File.basename(Dir.pwd).upcase + ': ' if !@@hide_label
+    @label = (@@label_override || File.basename(Dir.pwd).upcase)  + ': ' if !@@hide_label
     print "\n"*2 + '-'*80 + "\n"*2
     print "\e[2J\e[f" if @@clear_terminal
     false
