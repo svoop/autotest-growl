@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.post_install_message = "\e[1;32m\n" + ('-' * 79) + "\n\n" + File.read('PostInstall.txt') + "\n" + ('-' * 79) + "\n\e[0m"
+  s.add_dependency "autotest"
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
   s.add_development_dependency "ZenTest"
